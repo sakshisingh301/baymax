@@ -29,24 +29,49 @@ const LoginPage = () => {
       </div>
 
     {/* Right Container */}
-      <div className='lg:basis-1/2'>
+      <div className='flex justify-center items-center pl-30 lg:basis-1/2'>
         {/* Red Box */}
-        <div>
+        <div className='flex flex-col bg-baymax-red h-[65vh] w-full rounded-l-4xl justify-between items-center'>
           {/* Heading */}
-          <div></div>
-          {/* Form Container */}
-          <div>
-            {/* Label */}
-            <div></div>
-            {/* Textbox */}
-            <div></div>
-            {/* Label */}
-            <div></div>
-            {/* Textbox */}
-            <div></div>
+          <div className='font-ubuntu text-3xl h-1/10 pt-20'>
+            Nurses Login
           </div>
+          {/* Form Container */}
+          <form className='flex flex-col w-full max-w-sm space-y-6 pb-20 items-center'>
+            <div className='w-full'>
+              {/* Label */}
+              <label htmlFor="name" className="block font-ubuntu text-white text-xl">
+                Name
+              </label>
+              {/* Textbox */}
+              <input
+                type="text"
+                id="name"
+                className="mt-1 w-full rounded-md border-2 border-gray-300 px-4 py-2 text-white focus:outline-none"
+                placeholder="Enter your name"
+              />
+            </div>
+            <div className='w-full pb-7'>
+              {/* Label */}
+              <label htmlFor="name" className="block font-ubuntu text-white text-xl">
+                Password
+              </label>
+              {/* Textbox */}
+              <input
+                type="password"
+                id="password"
+                className="mt-1 w-full rounded-md border-2 border-gray-300 px-4 py-2 text-white focus:outline-none"
+                placeholder="Enter your password"
+              />
+            </div>
           {/* Submit Button */}
-          <div></div>
+          <button
+            type="submit"
+            className="w-1/2 text-black bg-white font-medium px-6 py-2 mt-4 cursor-pointer hover:bg-transparent border-2 border-white hover:text-white"
+          >
+            Sign In!
+          </button>
+          </form>
         </div>
       </div>
     </div>
