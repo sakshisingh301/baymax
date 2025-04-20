@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import Footer from '../components/Footer';
 
 const Register = () => {
 
@@ -11,6 +12,7 @@ const Register = () => {
       };
 
     return (
+        <>
         <div className='grid grid-cols-2 lg:grid-row h-screen'>
           {/* Left Container */}
           <div className='lg:basis-1/2 relative overflow-hidden'>
@@ -87,6 +89,8 @@ const Register = () => {
             </div>
           </div>
         </div>
+        <Footer/>
+        </>
       );
 };
 

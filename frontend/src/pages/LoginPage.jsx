@@ -44,7 +44,7 @@ const LoginPage = () => {
         {/* Red Box */}
         <div className='flex flex-col bg-baymax-red h-[65vh] w-full rounded-l-4xl justify-between items-center'>
           {/* Heading */}
-          <div className='font-ubuntu text-3xl h-1/10 pt-20'>
+          <div className='font-ubuntu text-3xl h-1/10 pt-15'>
             Nurses Login
           </div>
           {/* Form Container */}
