@@ -1,7 +1,15 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Register = () => {
+
+    const navigate = useNavigate();
+
+    const handleSignup = (e) => {
+        e.preventDefault(); 
+        navigate('/chat'); 
+      };
+
     return (
         <div className='grid grid-cols-2 lg:grid-row h-screen'>
           {/* Left Container */}
@@ -38,7 +46,7 @@ const Register = () => {
                 Nurses Register
               </div>
               {/* Form Container */}
-              <form className='flex flex-col w-full max-w-sm space-y-6 pb-20 items-center'>
+              <form className='flex flex-col w-full max-w-sm space-y-6 pb-20 items-center' onSubmit={handleSignup}>
                 <div className='w-full'>
                   {/* Label */}
                   <label htmlFor="name" className="block font-ubuntu text-white text-xl">
@@ -68,7 +76,7 @@ const Register = () => {
               {/* Submit Button */}
               <button
                 type="submit"
-                className="w-1/2 text-black bg-white font-medium px-6 py-2 mt-4 cursor-pointer hover:bg-transparent border-2 border-white hover:text-white"
+                className="w-1/2 text-black bg-white font-medium px-6 py-2 mt-4 cursor-pointer hover:bg-transparent border-2 border-white hover:text-white transition"
               >
                 Sign up!
               </button>
