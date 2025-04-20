@@ -1,7 +1,13 @@
 @import "tailwindcss";
 
 @theme {
-  --font-display: "Oswald", "sans-serif";
+  --font-main: "Kyivtype-sans";
+  --font-ubuntu: "Ubuntu Sans Mono", monospace;
+}
+
+@font-face {
+  font-family: "Kyivtype-sans";
+  src: url("/fonts/Kyivtype-sans.otf") format(opentype);
 }
 
 :root {
