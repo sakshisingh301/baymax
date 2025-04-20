@@ -1,12 +1,13 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
     return (
         <nav className="w-full bg-baymax-red shadow-md px-6 py-4 flex items-center justify-between font-ubuntu">
           {/* Left - Logo / Brand */}
-          <div className="text-2xl font-main font-bold text-white">
+          <Link to="/patientlookup" className="text-2xl font-main font-bold text-white">
             Baymax
-          </div>
+          </Link>
     
           {/* Right - Logout Button */}
           <button

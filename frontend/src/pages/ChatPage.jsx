@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
 
 function ChatBubble({ text, sender }) {
   return (
@@ -102,6 +103,7 @@ export default function ChatPage() {
   };
 
   return (
+    <>
     <div className="h-screen flex flex-col font-mono overflow-hidden">
       <Navbar/>
       {/* Chat display */}
@@ -142,5 +144,7 @@ export default function ChatPage() {
         </button>
       </div>
     </div>
+    <Footer/>
+    </>
   );
 }

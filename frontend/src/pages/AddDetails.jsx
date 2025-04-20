@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
 
 export default function AddDetails() {
   const [formData, setFormData] = useState({ name: '', age: '', height: '', weight: '' });
@@ -35,23 +37,22 @@ export default function AddDetails() {
   };
 
   return (
+    <>
     <div className="h-screen flex flex-col bg-gradient-to-br from-slate-300 to-slate-500 font-mono">
-      {/* Header */}
-      <div className="bg-[#B12126] text-white flex items-center justify-between px-6 py-3">
-        <h1 className="text-2xl font-semibold">Baymax</h1>
-        <button className="bg-white/30 hover:bg-white/40 text-white px-4 py-1 rounded transition">Logout</button>
-      </div>
+      <Navbar/>
 
       {/* Content */}
-      <div className="flex-1 flex flex-col items-center justify-center px-6">
-        <div className="text-white text-2xl font-semibold flex items-center gap-2 mb-6">
-          <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m8-8H4" />
-          </svg>
-          Add new patient details
+      <div className="flex-1 flex flex-col items-center justify-center px-6 w-full">
+        <div className="font-main text-5xl flex items-center gap-2 mb-15">
+          <img
+            src="/polygon.png"
+            alt="Icon description"
+            className="w-7 h-7 mr-3 translate-y-0.5"
+          />
+            Add Patient Details
         </div>
 
-        <div className="bg-white rounded-lg shadow-md px-8 py-6 w-full max-w-2xl space-y-4">
+        <div className="bg-white rounded-lg shadow-md p-20 w-full max-w-5xl space-y-4">
           {['name', 'age', 'height', 'weight'].map(field => (
             <div key={field} className="flex items-center gap-4">
               <label htmlFor={field} className="w-20 font-medium text-black capitalize">
@@ -67,19 +68,19 @@ export default function AddDetails() {
             </div>
           ))}
 
-          <div className="flex justify-between pt-6">
+          <div className="flex justify-center gap-30 pt-6">
             <button
               onClick={handleAddPatient}
-              className="bg-orange-400 hover:bg-orange-500 text-white px-6 py-2 rounded"
+              className="bg-orange-400 hover:bg-orange-500 text-white px-6 py-2 rounded cursor-pointer"
             >
               Add patient
             </button>
             <button
               onClick={handleStartConversation}
-              className="bg-orange-400 hover:bg-orange-500 text-white px-6 py-2 rounded"
+              className="bg-orange-400 hover:bg-orange-500 text-white px-6 py-2 rounded cursor-pointer"
             >
               Start Conversation
-            </button>
+            </button> 
           </div>
         </div>
       </div>
@@ -93,5 +94,7 @@ export default function AddDetails() {
         </div>
       )}
     </div>
+  <Footer/>
+  </>
   );
 }

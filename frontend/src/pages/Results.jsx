@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
 
 export default function Results() {
   const navigate = useNavigate();
@@ -33,19 +34,22 @@ export default function Results() {
   }
 
   return (
+    <>
     <div className="h-screen flex flex-col bg-gradient-to-br from-slate-300 to-slate-500 font-mono">
       <Navbar/>
 
       {/* Patient Status Box */}
-      <div className="flex-1 flex items-center justify-center p-6">
-        <div className="bg-white rounded-lg shadow-md p-8 w-full max-w-2xl">
-          <h2 className="text-xl font-semibold mb-4 text-gray-700 flex items-center gap-2">
-            <svg className="w-5 h-5 text-gray-700" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M8 10h.01M12 10h.01M16 10h.01M9 16h6m-6-8h6a2 2 0 012 2v6a2 2 0 01-2 2H9a2 2 0 01-2-2V10a2 2 0 012-2z" />
-            </svg>
-            Patient Status
-          </h2>
-          <pre className="text-black whitespace-pre-wrap">
+      <div className="flex-1 flex flex-col items-center justify-center p-6 gap-10">
+        <div className="font-main text-5xl flex items-center gap-2">
+        <img
+          src="/polygon.png"
+          alt="Icon description"
+          className="w-7 h-7 mr-3 translate-y-0.5"
+        />
+          Patient Status
+        </div>
+        <div className="bg-white rounded-lg shadow-md p-15 w-full max-w-3xl">
+          <pre className="text-black whitespace-pre-wrap text-xl">
             Name: {patientData.name} <br/>
             Age: {patientData.age} <br/>
             <br/>
@@ -60,7 +64,7 @@ export default function Results() {
           <div className="flex justify-center mt-6">
             <button
               onClick={() => navigate('/')} // or another route
-              className="bg-orange-400 hover:bg-orange-500 text-white px-6 py-2 rounded"
+              className="bg-orange-400 hover:bg-orange-500 text-white px-6 py-2 rounded cursor-pointer"
             >
               Done
             </button>
@@ -68,5 +72,7 @@ export default function Results() {
         </div>
       </div>
     </div>
+    <Footer/>
+  </>
   );
 }
