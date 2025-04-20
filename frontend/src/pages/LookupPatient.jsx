@@ -1,9 +1,10 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Navbar from '../components/Navbar';
 
 export default function LookupPatient() {
   const [patientName, setPatientName] = useState('');
-  const [modalText, setModalText] = useState('');
+  const [modalText, setModalText] = useState();
   const [showModal, setShowModal] = useState(false);
   const navigate = useNavigate();
 
@@ -36,11 +37,7 @@ export default function LookupPatient() {
 
   return (
     <div className="h-screen flex flex-col bg-gradient-to-br from-slate-300 to-slate-500 font-mono">
-      {/* Header */}
-      <div className="bg-[#B12126] text-white flex items-center justify-between px-6 py-3">
-        <h1 className="text-2xl font-semibold">Baymax</h1>
-        <button className="bg-white/30 hover:bg-white/40 text-white px-4 py-1 rounded transition">Logout</button>
-      </div>
+      <Navbar/>
 
       {/* Content */}
       <div className="flex-1 flex flex-col items-center justify-center gap-6 px-4">
@@ -90,9 +87,15 @@ export default function LookupPatient() {
 
       {/* Modal */}
       {showModal && (
-        <div className="absolute inset-0 flex items-center justify-center bg-black/30">
-          <div className="bg-slate-500 text-white text-xl px-10 py-6 rounded-lg shadow-xl">
+        <div className="absolute inset-0 flex items-center justify-center bg-black/50">
+          <div className="flex flex-col gap-9 bg-slate-500 text-white text-xl px-10 py-6 rounded-lg shadow-xl">
             {modalText}
+            <button
+              onClick={handleAdd}
+              className="bg-green-500 hover:bg-green-600 text-white font-medium px-6 py-2 rounded"
+            >
+              Okay!
+            </button>
           </div>
         </div>
       )}

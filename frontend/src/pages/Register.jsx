@@ -7,7 +7,7 @@ const Register = () => {
 
     const handleSignup = (e) => {
         e.preventDefault(); 
-        navigate('/chat'); 
+        navigate('/patientlookup'); 
       };
 
     return (

@@ -1,8 +1,18 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import Footer from '../components/Footer';
 
 const LoginPage = () => {
+
+  const navigate = useNavigate();
+
+    const handleSignup = (e) => {
+        e.preventDefault(); 
+        navigate('/patientlookup'); 
+      };
+
   return (
+    <>
     <div className='grid grid-cols-2 lg:grid-row h-screen'>
       {/* Left Container */}
       <div className='lg:basis-1/2 relative overflow-hidden'>
@@ -38,7 +48,7 @@ const LoginPage = () => {
             Nurses Login
           </div>
           {/* Form Container */}
-          <form className='flex flex-col w-full max-w-sm space-y-6 pb-20 items-center'>
+          <form className='flex flex-col w-full max-w-sm space-y-6 pb-20 items-center' onSubmit={handleSignup}>
             <div className='w-full'>
               {/* Label */}
               <label htmlFor="name" className="block font-ubuntu text-white text-xl">
@@ -79,6 +89,8 @@ const LoginPage = () => {
         </div>
       </div>
     </div>
+    <Footer/>
+  </>
   );
 };
 
