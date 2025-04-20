@@ -1,12 +1,14 @@
 import { useState } from 'react'
 import './App.css'
 import LoginPage from './pages/LoginPage'
+import routes from '../routes/routes'
+import { RouterProvider } from 'react-router-dom'
 
 function App() {
   return (
-    <>
-      <LoginPage/>
-    </>
+    <RouterProvider router={routes}>
+      
+    </RouterProvider>
   )
 }
 

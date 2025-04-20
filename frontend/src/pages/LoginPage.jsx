@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const LoginPage = () => {
   return (
@@ -71,6 +72,9 @@ const LoginPage = () => {
           >
             Sign In!
           </button>
+          <Link to="/register" className="text-600 underline">
+            New here? Go to sign up!
+          </Link>
           </form>
         </div>
       </div>
