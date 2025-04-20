@@ -11,11 +11,8 @@ const Navbar = () => {
           {/* Right - Logout Button */}
           <button
             className="bg-white/30 font-main text-xl text-white border border-white px-4 py-2 rounded hover:bg-transparent transition cursor-pointer"
-            onClick={() => {
-              // Handle logout logic here
-              console.log('Logging out...');
-            }}
-          >
+            onClick={() => navigate('/')}
+            >
             Logout
           </button>
         </nav>
