@@ -1,7 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const Navbar = () => {
+  const navigate = useNavigate();
+  
     return (
         <nav className="w-full bg-baymax-red shadow-md px-6 py-4 flex items-center justify-between font-ubuntu">
           {/* Left - Logo / Brand */}
