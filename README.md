@@ -23,21 +23,13 @@ Baymax was born from an eye-opening article titled **“Triage: A Critical First
 ## 🛠️ How We Built It
 
 - **Backend**: Django + Django REST Framework
-- **LLM Integration**: LangChain with Google Gemini API (session-based memory and agent execution)
+- **LLM Integration**: LangChain with Google Gemini model (session-based memory and agent execution)
 - **Database**: MongoDB (stores patient profiles and session history)
 - **Prompt Engineering**: Designed for safety, compliance, and clinical clarity
-- **Frontend**: Compatible with RESTful endpoints for seamless integration
+- **Frontend**: React (Next.js App Router), Tailwind CSS, TypeScript
 
----
 
-## 🚧 Challenges
 
-- Parsing and formatting LLM output for clinical usability
-- Maintaining **session-specific memory** for ongoing patient interactions
-- Balancing **flexibility in symptom reporting** with the need for structured triage logic
-- Ensuring **compliance with medical best practices** in generated follow-up and recommendations
-
----
 
 
 
