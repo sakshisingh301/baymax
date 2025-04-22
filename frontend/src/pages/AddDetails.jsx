@@ -16,7 +16,7 @@ export default function AddDetails() {
   const handleAddPatient = async () => {
     // Call backend to add patient to DB
     try {
-      const response = await fetch('/api/addPatient', {
+      const response = await fetch('http://localhost:8000/patient/register/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData)

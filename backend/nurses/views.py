@@ -69,19 +69,13 @@ Vitals:
 Nurse Observation: {message}
 
 Step 1: Extract symptoms from the {message}.
-Step 2: Ask 5 relevant follow-up questions to clarify condition.
-Please format the follow-up questions in the following way:
-1. [First question]
-2. [Second question]
-3. [Third question]
-4. [Fourth question]
-5. [Fifth question]
+Step 2: Ask 5 relevant follow-up questions to clarify condition.Generate Questions in the numbered format
 """
-
+                print(prompt)
                 agent_response = agent.invoke({"input": prompt})
-                print("agent",agent_response)
                 output = agent_response.get("output", "")
-                print("sakshi : ",output)
+                print("output:", output)
+
                 symptoms = self.extract_symptoms(output)
                 follow_up_questions = self.extract_follow_up_questions(output)
                 response = {
@@ -102,12 +96,17 @@ You are a triage AI assistant. Continue the session.
 Here are the nurse's answers to your previous questions:
 {answer_text}
 
-Use the full context (patient, vitals, symptoms, answers) to:
-- Classify the Emergency Severity Index (ESI level)
+Use the full context (patient details, vitals, symptoms, answers) to:
+- Classify the Emergency Severity Index (ESI) level for this patient (1-5).
 - Recommend the expected wait time
-- Provide a brief clinical justification.
+- **Rationale and Next Steps**: Provide a clear rationale explaining the ESI level and suggest next steps for the nurse to follow in order to manage the patient's condition. These should include:
+    - Recommended tests or procedures.
+    - Any immediate interventions or preventive care steps the nurse should take.
+    - If applicable, note if the patient needs to be monitored or reassessed before further treatment.
+    - If additional information or clarification is required from the nurse, include that as well.
 """
                 agent_response = agent.run(prompt)
+                print("output_yay", agent_response)
                 esi_level, wait_time, clinical_justification = self.extract_triage_info(agent_response)
                 response = {
                     "session_id": session_id,
@@ -143,32 +142,33 @@ Use the full context (patient, vitals, symptoms, answers) to:
         follow_up_questions = []
         try:
             # Check if 'Step 2: Follow-up Questions:' exists in the output
-            if "Step 2: Follow-up questions:" in output:
+            if "Step 2: Follow-up Questions:" in output:
                 print("Step 2 found, parsing follow-up questions.")
 
                 # Extract everything after "Step 2: Follow-up Questions:"
-                follow_up_section = output.split("Step 2: Follow-up questions:")[1].strip()
+                follow_up_section = output.split("Step 2: Follow-up Questions:")[1].strip()
 
-                # Split the section by each question (each question starts with a number, e.g., "1.")
-                follow_up_lines = follow_up_section.split("1.")[1:]  # Skip the first part before "1."
+                # Split by newlines and clean up the questions
+                follow_up_lines = follow_up_section.split("\n")
 
-                # Loop through each follow-up question and clean it up before adding it to the list
-                for idx, question in enumerate(follow_up_lines):
+                # Remove empty lines and extra spaces
+                follow_up_lines = [line.strip() for line in follow_up_lines if line.strip()]
+
+                # Ensure questions are formatted properly and numbered correctly
+                for idx, question in enumerate(follow_up_lines, start=1):
                     cleaned_question = question.strip()
 
-                    if cleaned_question:  # Ensure the question is not empty
-                        # Add the number (e.g., "1.") to the question
-                        question_number = idx + 1
+                    if cleaned_question:
                         follow_up_questions.append({
-                            "question_number": question_number,
-                            "question": f"{question_number}. {cleaned_question.strip()}"
+                            "question_number": idx,
+                            "question": f"{idx}. {cleaned_question}"
                         })
 
                 # Debugging: Print the extracted follow-up questions
                 print("Extracted Follow-up Questions:", follow_up_questions)
             else:
                 print("Follow-up questions section not found in the output.")
-        except IndexError as e:
+        except Exception as e:
             print(f"Error parsing follow-up questions: {str(e)}")
             follow_up_questions = []  # Return an empty list in case of error
 
@@ -200,12 +200,13 @@ Use the full context (patient, vitals, symptoms, answers) to:
         return response[start:end].strip()
 
     def extract_clinical_justification(self, response):
-        """Extract the clinical justification from the triage response."""
+        """Extract the clinical justification (next steps) from the triage response."""
         try:
-            start = response.find("Clinical Justification:")
+            start = response.find("Rationale and Next Steps:")
+            print("-----------------start",start)
             if start == -1:
                 return "Not found"
-            start += len("Clinical Justification:")
+            start += len("Rationale and Next Steps:")
             end = response.find("\n", start)
             return response[start:end].strip()
         except Exception as e:

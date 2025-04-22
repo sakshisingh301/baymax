@@ -37,7 +37,8 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "nurses"
+    "nurses",
+    "corsheaders",
 ]
 
 MIDDLEWARE = [
@@ -48,6 +49,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    'corsheaders.middleware.CorsMiddleware'
 ]
 
 ROOT_URLCONF = "baymax_backend.urls"
@@ -67,7 +69,13 @@ TEMPLATES = [
         },
     },
 ]
+CORS_ALLOW_ALL_ORIGINS = True  # Allows all origins (not recommended for production)
 
+# OR
+
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:5173",  # Allow requests from this origin
+]
 WSGI_APPLICATION = "baymax_backend.wsgi.application"
 
 
